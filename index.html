@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quiz Master</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HOME SCREEN ================= -->
+
+    <section id="home_screen" class="screen active">
+
+        <div class="card home-card">
+
+            <div class="logo">🎯</div>
+
+            <h1>Quiz Master</h1>
+
+            <p class="subtitle">
+                Test your knowledge and compete with others!
+            </p>
+
+            <input
+                type="text"
+                id="player_name"
+                placeholder="Enter your name"
+                maxlength="20"
+                autocomplete="off"
+            >
+
+            <button id="start_btn" class="btn btn-primary">
+                🚀 Start Quiz
+            </button>
+
+            <div class="button-grid">
+
+                <button id="teacher_btn" class="btn btn-secondary">
+                    👨‍🏫 Host Game
+                </button>
+
+                <button id="join_game_btn" class="btn btn-secondary">
+                    🎮 Join Game
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= HOST SCREEN ================= -->
+
+    <section id="host_screen" class="screen">
+
+        <div class="card host-card">
+
+            <div class="page-icon">👨‍🏫</div>
+
+            <h2>Host Game</h2>
+
+            <p class="description">
+                Share the room code with your students.
+            </p>
+
+            <div class="room-code-box">
+
+                <span>ROOM CODE</span>
+
+                <strong id="host_room_code">
+                    482731
+                </strong>
+
+            </div>
+
+            <div class="qr-placeholder">
+
+                <span>▦</span>
+
+                <small>QR Code</small>
+
+            </div>
+
+            <h3 class="section-title">
+                👥 Players
+            </h3>
+
+            <div id="host_players" class="players-list">
+
+                <div class="player-item">
+                    <span>👤 Ahmed</span>
+                    <span>✓</span>
+                </div>
+
+                <div class="player-item">
+                    <span>👤 Mohamed</span>
+                    <span>✓</span>
+                </div>
+
+                <div class="player-item">
+                    <span>👤 Sara</span>
+                    <span>✓</span>
+                </div>
+
+            </div>
+
+            <button id="host_start_btn" class="btn btn-primary">
+                ▶ Start Game
+            </button>
+
+            <button id="host_back_btn" class="btn btn-back">
+                ← Back
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= JOIN SCREEN ================= -->
+
+    <section id="join_screen" class="screen">
+
+        <div class="card join-card">
+
+            <div class="page-icon">🎮</div>
+
+            <h2>Join Game</h2>
+
+            <p class="description">
+                Enter the room code provided by your host.
+            </p>
+
+            <input
+                type="text"
+                id="game_code"
+                placeholder="Enter room code"
+                maxlength="6"
+                inputmode="numeric"
+                autocomplete="off"
+            >
+
+            <input
+                type="text"
+                id="join_player_name"
+                placeholder="Enter your name"
+                maxlength="20"
+                autocomplete="off"
+            >
+
+            <button id="join_btn" class="btn btn-primary">
+                🚀 Join Game
+            </button>
+
+            <button id="join_back_btn" class="btn btn-back">
+                ← Back
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WAITING SCREEN ================= -->
+
+    <section id="waiting_screen" class="screen">
+
+        <div class="card waiting-card">
+
+            <div class="waiting-icon">
+                ⏳
+            </div>
+
+            <h2>Waiting for the Host</h2>
+
+            <p class="description">
+                You joined the game successfully!
+            </p>
+
+            <div class="waiting-player">
+
+                <span>Player</span>
+
+                <strong id="waiting_player_name">
+                    Player
+                </strong>
+
+            </div>
+
+            <div class="room-code-box">
+
+                <span>ROOM CODE</span>
+
+                <strong id="waiting_room_code">
+                    482731
+                </strong>
+
+            </div>
+
+            <div class="loading-dots">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+            <p class="waiting-message">
+                The game will start when the host begins.
+            </p>
+
+            <button id="waiting_back_btn" class="btn btn-back">
+                Leave Game
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUIZ SCREEN ================= -->
+
+    <section id="quiz_screen" class="screen">
+
+        <div class="card quiz-card">
+
+            <!-- Quiz Header -->
+
+            <div class="quiz-header">
+
+                <div class="player-info">
+
+                    <div class="player-avatar">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <span>Player</span>
+
+                        <strong id="player-name-display">
+                            Player
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="question-counter">
+                    <span id="question-number">
+                        Question 1 / 4
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- Progress -->
+
+            <div class="progress-container">
+
+                <div
+                    id="progress-bar"
+                    class="progress-bar">
+                </div>
+
+            </div>
+
+
+            <!-- Timer -->
+
+            <div class="timer-wrapper">
+
+                <div id="timer" class="timer">
+                    10
+                </div>
+
+            </div>
+
+
+            <!-- Question -->
+
+            <div class="question-box">
+
+                <h2 id="question-text">
+                    Question
+                </h2>
+
+            </div>
+
+
+            <!-- Answers -->
+
+            <div
+                id="answers-container"
+                class="answers-container">
+            </div>
+
+
+            <!-- Next -->
+
+            <button
+                id="next_btn"
+                class="btn next-btn">
+                Next Question →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESULT SCREEN ================= -->
+
+    <section id="result_screen" class="screen">
+
+        <div class="card result-card">
+
+            <div class="trophy">
+                🏆
+            </div>
+
+            <h2>Quiz Completed!</h2>
+
+            <p class="result-player">
+                Great job,
+                <strong id="result_player_name">
+                    Player
+                </strong>
+            </p>
+
+            <div class="final-score-box">
+
+                <span>Your Score</span>
+
+                <strong id="score_text">
+                    0 / 4
+                </strong>
+
+                <div id="score_percentage">
+                    0%
+                </div>
+
+            </div>
+
+
+            <div class="result-stats">
+
+                <div class="result-stat">
+                    <span>✅</span>
+                    <strong id="correct_answers">0</strong>
+                    <small>Correct</small>
+                </div>
+
+                <div class="result-stat">
+                    <span>❌</span>
+                    <strong id="wrong_answers">0</strong>
+                    <small>Wrong</small>
+                </div>
+
+                <div class="result-stat">
+                    <span>⏱️</span>
+                    <strong id="result_time">0s</strong>
+                    <small>Time</small>
+                </div>
+
+            </div>
+
+
+            <div class="rank-box">
+
+                <span>Your Rank</span>
+
+                <strong id="player_rank">
+                    #
+                </strong>
+
+            </div>
+
+
+            <div class="result-buttons">
+
+                <button
+                    id="leaderboard_btn"
+                    class="btn btn-primary">
+                    🏆 Leaderboard
+                </button>
+
+                <button
+                    id="restart_btn"
+                    class="btn btn-secondary">
+                    🔄 Play Again
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= LEADERBOARD SCREEN ================= -->
+
+    <section id="leaderboard_screen" class="screen">
+
+        <div class="card leaderboard-card">
+
+            <div class="leaderboard-header">
+
+                <div class="crown">
+                    👑
+                </div>
+
+                <h2>Leaderboard</h2>
+
+                <p>
+                    Top players
+                </p>
+
+            </div>
+
+
+            <!-- Podium -->
+
+            <div class="podium">
+
+                <div class="podium-place second">
+
+                    <div class="podium-avatar">
+                        🥈
+                    </div>
+
+                    <strong id="second_name">-</strong>
+
+                    <span id="second_score">0</span>
+
+                    <small id="second_time">0s</small>
+
+                </div>
+
+
+                <div class="podium-place first">
+
+                    <div class="podium-avatar">
+                        🥇
+                    </div>
+
+                    <strong id="first_name">-</strong>
+
+                    <span id="first_score">0</span>
+
+                    <small id="first_time">0s</small>
+
+                </div>
+
+
+                <div class="podium-place third">
+
+                    <div class="podium-avatar">
+                        🥉
+                    </div>
+
+                    <strong id="third_name">-</strong>
+
+                    <span id="third_score">0</span>
+
+                    <small id="third_time">0s</small>
+
+                </div>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <div class="stats-grid">
+
+                <div class="dashboard-stat">
+                    <span>👥</span>
+                    <strong id="players_count">0</strong>
+                    <small>Players</small>
+                </div>
+
+                <div class="dashboard-stat">
+                    <span>📊</span>
+                    <strong id="average_score">0%</strong>
+                    <small>Avg Score</small>
+                </div>
+
+                <div class="dashboard-stat">
+                    <span>✅</span>
+                    <strong id="total_correct">0</strong>
+                    <small>Correct</small>
+                </div>
+
+                <div class="dashboard-stat">
+                    <span>❌</span>
+                    <strong id="total_wrong">0</strong>
+                    <small>Wrong</small>
+                </div>
+
+                <div class="dashboard-stat">
+                    <span>⚡</span>
+                    <strong id="fastest_time">-</strong>
+                    <small>Fastest</small>
+                </div>
+
+            </div>
+
+
+            <!-- Leaderboard Table -->
+
+            <div class="table
