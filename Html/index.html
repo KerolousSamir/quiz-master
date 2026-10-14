@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B1E36">
+  <title>Church Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="cross" aria-label="Church Quiz">✝</div>
+    <button class="language-btn" id="language_btn" type="button">
+      عربي / EN
+    </button>
+  </header>
+
+  <main>
+    <section id="home_screen" class="screen active">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="eyebrow" id="eyebrow">LEARN • PLAY • GROW</div>
+          <h1>Church <span>Quiz</span></h1>
+          <h2 id="welcome_title">Create Your Account</h2>
+          <p id="welcome_text">
+            Create your account and grow together in faith.
+          </p>
+
+          <form id="registerForm" class="register-form">
+            <label for="fullName">Your name *</label>
+            <input
+              id="fullName"
+              name="fullName"
+              type="text"
+              placeholder="Enter your full name"
+              autocomplete="name"
+              maxlength="100"
+              required
+            >
+
+            <label for="email">Email address *</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            >
+
+            <label for="password">Password *</label>
+            <div class="password-wrapper">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Create a password"
+                autocomplete="new-password"
+                minlength="6"
+                required
+              >
+              <button
+                id="togglePassword"
+                class="eye-btn"
+                type="button"
+                aria-label="Show password"
+                aria-pressed="false"
+              >◉</button>
+            </div>
+
+            <div class="role-heading">
+              Choose Your Role <b>*</b>
+            </div>
+
+            <div class="role-options">
+              <label class="role-option">
+                <input
+                  type="radio"
+                  name="requestedRole"
+                  value="Creator"
+                  required
+                >
+                <span class="role-info">
+                  <strong>Creator</strong>
+                  <small>Create quizzes</small>
+                </span>
+              </label>
+
+              <label class="role-option">
+                <input
+                  type="radio"
+                  name="requestedRole"
+                  value="Player"
+                  required
+                >
+                <span class="role-info">
+                  <strong>Player</strong>
+                  <small>Play quizzes</small>
+                </span>
+              </label>
+            </div>
+
+            <div
+              id="authMessage"
+              class="auth-message"
+              role="status"
+              aria-live="polite"
+            ></div>
+
+            <button
+              id="register_btn"
+              class="primary-btn"
+              type="submit"
+            >
+              Create Account <span>→</span>
+            </button>
+          </form>
+
+          <p class="login-link">
+            Already have an account?
+            <a href="login.html">Log in</a>
+          </p>
+        </div>
+
+        <div class="hero-art">
+          <img
+            src="Gemini_Generated_Image_eqn1boeqn1boeqn1.jpg"
+            alt="Church Quiz"
+            class="hero-image"
+          >
+          <div class="floating-star star-one">✦</div>
+          <div class="floating-star star-two">✧</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="host_screen" class="screen">
+      <div class="panel">
+        <div class="small-cross">✝</div>
+        <p class="eyebrow">HOST A GAME</p>
+        <h2>Invite your community</h2>
+        <p>Share this room code with your players.</p>
+        <div class="room-code" id="host_room_code">482731</div>
+        <h3>Players</h3>
+        <div id="host_players" class="player-list">
+          <p class="muted">Players will appear here when they join.</p>
+        </div>
+        <button id="host_start_btn" class="primary-btn" type="button">
+          Start Game →
+        </button>
+        <button id="host_back_btn" class="text-btn" type="button">
+          Back to Home
+        </button>
+      </div>
+    </section>
+
+    <section id="join_screen" class="screen">
+      <div class="panel">
+        <div class="small-cross">✝</div>
+        <p class="eyebrow">JOIN A GAME</p>
+        <h2>You're invited!</h2>
+        <p>Enter your name and the room code.</p>
+        <label for="join_player_name">Your name</label>
+        <input id="join_player_name" type="text" placeholder="Enter your name" maxlength="30">
+        <label for="game_code">Room code</label>
+        <input id="game_code" type="text" placeholder="e.g. 482731" maxlength="6">
+        <button id="join_btn" class="primary-btn" type="button">Join Game →</button>
+        <button id="join_back_btn" class="text-btn" type="button">Back to Home</button>
+      </div>
+    </section>
+
+    <section id="waiting_screen" class="screen">
+      <div class="panel">
+        <div class="small-cross">✝</div>
+        <p class="eyebrow">YOU'RE IN!</p>
+        <h2>Welcome, <span id="waiting_player_name">Player</span></h2>
+        <p>You're in room <strong id="waiting_room_code">482731</strong>.</p>
+        <div class="waiting-orbit"><span>✝</span></div>
+        <p class="muted" id="waiting_message">Waiting for the host to start the game...</p>
+        <button id="waiting_back_btn" class="text-btn" type="button">Leave Room</button>
+      </div>
+    </section>
+
+    <section id="quiz_screen" class="screen">
+      <div class="quiz-panel">
+        <div class="quiz-top">
+          <div>
+            <p class="eyebrow">CHURCH QUIZ</p>
+            <h2>Hello, <span id="player-name-display">Player</span>!</h2>
+          </div>
+          <div class="timer" id="timer">10</div>
+        </div>
+        <div class="progress-meta">
+          <span>Question <strong id="question-number">1 / 4</strong></span>
+          <span>Time remaining</span>
+        </div>
+        <div class="progress-track"><div id="progress-bar"></div></div>
+        <h3 id="question-text">Get ready!</h3>
+        <div id="answers-container" class="answers-grid"></div>
+        <button id="next_btn" class="primary-btn" type="button" disabled>Next Question →</button>
+      </div>
+    </section>
+
+    <section id="result_screen" class="screen">
+      <div class="panel">
+        <div class="result-icon">✦</div>
+        <p class="eyebrow">QUIZ COMPLETED</p>
+        <h2>Well done, <span id="result_player_name">Player</span>!</h2>
+        <p>Your effort matters. Keep learning and growing.</p>
+        <div class="score-circle">
+          <strong id="score_text">0 / 4</strong>
+          <span id="score_percentage">0%</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat"><strong id="correct_answers">0</strong><span>Correct</span></div>
+          <div class="stat"><strong id="wrong_answers">0</strong><span>Incorrect</span></div>
+          <div class="stat"><strong id="result_time">0s</strong><span>Time</span></div>
+          <div class="stat"><strong id="player_rank">—</strong><span>Rank</span></div>
+        </div>
+        <button id="leaderboard_btn" class="primary-btn" type="button">View Leaderboard →</button>
+        <button id="restart_btn" class="text-btn" type="button">Back to Home</button>
+      </div>
+    </section>
+
+    <section id="leaderboard_screen" class="screen">
+      <div class="panel leaderboard-panel">
+        <div class="small-cross">✝</div>
+        <p class="eyebrow">OUR COMMUNITY</p>
+        <h2>Leaderboard</h2>
+        <p>Celebrate progress and keep growing together.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>#</th><th>Name</th><th>Score</th><th>Time</th></tr>
+            </thead>
+            <tbody id="leaderboard_body"></tbody>
+          </table>
+        </div>
+        <h3 class="section-label">Top Players</h3>
+        <div class="top-players">
+          <div class="top-player"><span>🥇</span><strong id="first_name">—</strong><small id="first_score">—</small><small id="first_time">—</small></div>
+          <div class="top-player"><span>🥈</span><strong id="second_name">—</strong><small id="second_score">—</small><small id="second_time">—</small></div>
+          <div class="top-player"><span>🥉</span><strong id="third_name">—</strong><small id="third_score">—</small><small id="third_time">—</small></div>
+        </div>
+        <h3 class="section-label">Game Stats</h3>
+        <div class="stats-grid">
+          <div class="stat"><strong id="players_count">0</strong><span>Players</span></div>
+          <div class="stat"><strong id="average_score">0%</strong><span>Average score</span></div>
+          <div class="stat"><strong id="total_correct">0</strong><span>Correct answers</span></div>
+          <div class="stat"><strong id="total_wrong">0</strong><span>Incorrect answers</span></div>
+          <div class="stat"><strong id="fastest_time">—</strong><span>Fastest time</span></div>
+        </div>
+        <button id="leaderboard_back_btn" class="primary-btn" type="button">Back to Home</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
