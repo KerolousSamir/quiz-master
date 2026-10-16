@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B1E36">
+
+  <title>Admin Dashboard | Church Quiz</title>
+
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+  <script src="leaderboard-admin.js" defer></script>
+</head>
+
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="admin.html">
+      <span class="brand-cross">✝</span>
+      <span>
+        <b>Church Quiz</b>
+        <small>ADMIN PANEL</small>
+      </span>
+    </a>
+
+    <div class="menu-caption">WORKSPACE</div>
+
+    <nav class="navigation" aria-label="Admin navigation">
+      <button class="nav-link active" data-page="dashboard">
+        <span>▦</span> Dashboard
+      </button>
+
+      <button class="nav-link" data-page="create">
+        <span>＋</span> Create Quiz
+      </button>
+
+      <button class="nav-link" data-page="quizzes">
+        <span>▤</span> My Quizzes
+      </button>
+
+      <button class="nav-link" data-page="questions">
+        <span>▧</span> Question Bank
+      </button>
+
+      <button class="nav-link" data-page="participants">
+        <span>♙</span> Participants
+      </button>
+
+      <button class="nav-link" data-page="results">
+        <span>▥</span> Results
+      </button>
+
+      <button class="nav-link" data-page="leaderboard">
+        <span>🏆</span> Leaderboard
+      </button>
+
+      <button class="nav-link" data-page="settings">
+        <span>⚙</span> Settings
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a class="back-link" href="index.html">
+        ← Back to website
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <header class="topbar">
+      <button
+        class="mobile-menu"
+        id="menu-toggle"
+        aria-label="Toggle menu"
+      >☰</button>
+
+      <div>
+        <div class="breadcrumb">
+          Church Quiz <span>/</span> Admin
+        </div>
+
+        <h1 id="page-heading">Dashboard</h1>
+      </div>
+
+      <div class="top-actions">
+        <span class="status-dot"></span>
+        <span class="admin-label">Admin workspace</span>
+        <div class="avatar">A</div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-banner">
+          <div>
+            <span class="eyebrow">YOUR COMMUNITY, YOUR QUIZZES</span>
+
+            <h2>Welcome to your dashboard.</h2>
+
+            <p>
+              Create meaningful quiz experiences and help your
+              community grow together.
+            </p>
+
+            <button class="button gold-button" data-go="create">
+              ＋ Create a quiz
+            </button>
+          </div>
+
+          <div class="banner-cross">✝</div>
+        </div>
+        
+<!-- LOCAL GAME SESSION -->
+<div class="card form-card" id="game-session-card">
+  <div class="form-section-title">
+    <span>🎮</span>
+    <div>
+      <h3>Create Game Session</h3>
+      <p>Create a local demo room for your players.</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="session-quiz-select">Choose a ready quiz</label>
+    <select id="session-quiz-select" required>
+      <option value="">Select a quiz...</option>
+    </select>
+  </div>
+
+  <button
+    class="button gold-button"
+    id="create-game-session"
+    type="button"
+  >
+    Create Game Session
+  </button>
+
+  <div id="game-session-status" class="form-hint" aria-live="polite">
+    Save a quiz as Ready before creating a session.
+  </div>
+
+  <div id="game-session-details" hidden>
+    <p>Room code:</p>
+    <strong id="game-session-code"></strong>
+    <button
+      class="button light-button"
+      id="copy-session-code"
+      type="button"
+    >
+      Copy room code
+    </button>
+    <p id="game-session-quiz-title"></p>
+  </div>
+</div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Total quizzes</span>
+              <span class="stat-icon">▤</span>
+            </div>
+            <strong id="stat-quizzes">0</strong>
+            <small>Quizzes created</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Questions</span>
+              <span class="stat-icon">▧</span>
+            </div>
+            <strong id="stat-questions">0</strong>
+            <small>In your question bank</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Participants</span>
+              <span class="stat-icon">♙</span>
+            </div>
+            <strong id="stat-participants">0</strong>
+            <small>Demo records</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Average score</span>
+              <span class="stat-icon">↗</span>
+            </div>
+            <strong id="stat-average">—</strong>
+            <small>Based on saved results</small>
+          </article>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <h2>Recent quizzes</h2>
+            <p>Manage your latest quiz activities.</p>
+          </div>
+
+          <button class="button light-button" data-go="quizzes">
+            View all →
+          </button>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Quiz name</th>
+                  <th>Questions</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody id="recent-quizzes"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="recent-empty">
+            <div class="empty-icon">▤</div>
+            <b>No quizzes yet</b>
+            <p>Your created quizzes will appear here.</p>
+
+            <button class="button gold-button" data-go="create">
+              Create your first quiz
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREATE / EDIT QUIZ -->
+      <section class="page" id="page-create">
+        <div class="section-heading">
+          <div>
+            <h2>Create a new quiz</h2>
+            <p>
+              Set up the basic information and select the questions
+              participants will answer.
+            </p>
+          </div>
+        </div>
+
+        <form id="quiz-form" class="card form-card">
+          <div class="form-section-title">
+            <span>01</span>
+            <div>
+              <h3>Quiz information</h3>
+              <p>Give your quiz a clear name and description.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="quiz-title">Quiz title *</label>
+            <input
+              id="quiz-title"
+              required
+              maxlength="100"
+              placeholder="e.g. Bible Knowledge"
+            >
+          </div>
+
+          <div class="field">
+            <label for="quiz-description">Description</label>
+            <textarea
+              id="quiz-description"
+              rows="3"
+              maxlength="500"
+              placeholder="What will participants learn?"
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="quiz-category">Category</label>
+              <select id="quiz-category">
+                <option>Bible Knowledge</option>
+                <option>Old Testament</option>
+                <option>New Testament</option>
+                <option>Church History</option>
+                <option>Christian Life</option>
+                <option>General</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="quiz-time">Time per question</label>
+              <select id="quiz-time">
+                <option value="10">10 seconds</option>
+                <option value="15">15 seconds</option>
+                <option value="20">20 seconds</option>
+                <option value="30">30 seconds</option>
+                <option value="60">60 seconds</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Questions for this quiz</label>
+            <p class="form-hint">
+              Select the exact questions you want to include.
+            </p>
+
+            <div
+              id="quiz-question-picker"
+              class="quiz-question-picker"
+            >
+              <p class="form-hint">
+                Add questions in the Question Bank first.
+              </p>
+            </div>
+
+            <small id="quiz-question-hint" class="form-hint">
+              You can select multiple questions.
+            </small>
+          </div>
+
+          <div class="field">
+            <label for="quiz-status">Initial status</label>
+            <select id="quiz-status">
+              <option value="Draft">Save as draft</option>
+              <option value="Ready">Ready to publish</option>
+            </select>
+          </div>
+
+          <div class="form-footer">
+            <span class="form-hint">
+              You can edit these details later.
+            </span>
+
+            <button class="button gold-button" type="submit">
+              Save quiz →
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- MY QUIZZES -->
+      <section class="page" id="page-quizzes">
+        <div class="section-heading">
+          <div>
+            <h2>My quizzes</h2>
+            <p>View and manage all your quizzes.</p>
+          </div>
+
+          <button class="button gold-button" data-go="create">
+            ＋ New quiz
+          </button>
+        </div>
+
+        <div class="toolbar">
+          <input
+            id="quiz-search"
+            placeholder="Search quizzes..."
+            aria-label="Search quizzes"
+          >
+
+          <select id="quiz-filter" aria-label="Filter quizzes">
+            <option value="">All statuses</option>
+            <option>Draft</option>
+            <option>Ready</option>
+          </select>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Quiz name</th>
+                  <th>Category</th>
+                  <th>Questions</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody id="quizzes-table"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="quizzes-empty">
+            <div class="empty-icon">▤</div>
+            <b>No matching quizzes</b>
+            <p>Create a quiz to get started.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUESTION BANK -->
+      <section class="page" id="page-questions">
+        <div class="section-heading">
+          <div>
+            <h2>Question bank</h2>
+            <p>
+              Build a reusable collection of questions for your quizzes.
+            </p>
+          </div>
+        </div>
+
+        <form id="question-form" class="card form-card">
+          <div class="form-section-title">
+            <span>＋</span>
+            <div>
+              <h3>Add a question</h3>
+              <p>Start with a multiple-choice question.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="question-category">Category</label>
+            <select id="question-category">
+              <option>Bible Knowledge</option>
+              <option>Old Testament</option>
+              <option>New Testament</option>
+              <option>Church History</option>
+              <option>Christian Life</option>
+              <option>General</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="question-text">Question *</label>
+            <textarea
+              id="question-text"
+              required
+              rows="2"
+              placeholder="Write your question..."
+            ></textarea>
+          </div>
+
+          <div class="field">
+            <label>Answer choices *</label>
+            <div class="answer-fields">
+              <input class="answer-option" required placeholder="Option A">
+              <input class="answer-option" required placeholder="Option B">
+              <input class="answer-option" required placeholder="Option C">
+              <input class="answer-option" required placeholder="Option D">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="correct-answer">Correct answer</label>
+            <select id="correct-answer">
+              <option value="0">Option A</option>
+              <option value="1">Option B</option>
+              <option value="2">Option C</option>
+              <option value="3">Option D</option>
+            </select>
+          </div>
+
+          <div class="form-footer">
+            <span class="form-hint">
+              Questions are saved in this browser for now.
+            </span>
+
+            <button class="button gold-button" type="submit">
+              Add question
+            </button>
+          </div>
+        </form>
+
+        <div class="section-heading compact-heading">
+          <div>
+            <h2>Saved questions</h2>
+          </div>
+
+          <span class="count-pill" id="question-count">
+            0 questions
+          </span>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>Category</th>
+                  <th>Choices</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody id="questions-table"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="questions-empty">
+            <div class="empty-icon">▧</div>
+            <b>Your question bank is empty</b>
+            <p>Add questions above to build your library.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARTICIPANTS -->
+      <section class="page" id="page-participants">
+        <div class="section-heading">
+          <div>
+            <h2>Participants</h2>
+            <p>View participant records saved in this browser.</p>
+          </div>
+        </div>
+
+        <div class="notice">
+          This is a demo list. Participants from other devices will not
+          appear until a shared database is connected.
+        </div>
+
+        <div class="card table-card">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Quiz</th>
+                  <th>Score</th>
+                  <th>Time</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+
+              <tbody id="participants-table"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="participants-empty">
+            <div class="empty-icon">♙</div>
+            <b>No participants yet</b>
+            <p>Saved quiz results will be listed here.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULTS -->
+      <section class="page" id="page-results">
+        <div class="section-heading">
+          <div>
+            <h2>Results</h2>
+            <p>Review saved quiz scores and export a report.</p>
+          </div>
+
+          <button class="button gold-button" id="export-results">
+            ↓ Export CSV
+          </button>
+        </div>
+
+        <div class="stats-grid result-stats">
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Attempts</span>
+              <span class="stat-icon">▤</span>
+            </div>
+            <strong id="results-attempts">0</strong>
+            <small>Saved attempts</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Average score</span>
+              <span class="stat-icon">↗</span>
+            </div>
+            <strong id="results-average">—</strong>
+            <small>Across saved results</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Best score</span>
+              <span class="stat-icon">✦</span>
+            </div>
+            <strong id="results-best">—</strong>
+            <small>Highest percentage</small>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-top">
+              <span>Unique players</span>
+              <span class="stat-icon">♙</span>
+            </div>
+            <strong id="results-players">0</strong>
+            <small>Names recorded locally</small>
+          </article>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Participant</th>
+                  <th>Score</th>
+                  <th>Percentage</th>
+                  <th>Time</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+
+              <tbody id="results-table"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="results-empty">
+            <div class="empty-icon">▥</div>
+            <b>No results yet</b>
+            <p>Results will appear when quiz attempts are saved.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEADERBOARD -->
+      <section class="page" id="page-leaderboard">
+        <div class="section-heading">
+          <div>
+            <h2>Leaderboard</h2>
+            <p>Top 3 participants by their best quiz percentage.</p>
+          </div>
+
+          <button
+            class="button gold-button"
+            id="admin-leaderboard-refresh"
+            type="button"
+          >
+            ↻ Refresh
+          </button>
+        </div>
+
+        <div id="admin-leaderboard-content">
+          <div class="admin-top-three">
+            <article class="admin-top-card">
+              <div class="admin-top-medal">🥇</div>
+              <div class="admin-top-rank">1ST PLACE</div>
+              <h3>Loading...</h3>
+              <strong>—</strong>
+            </article>
+
+            <article class="admin-top-card">
+              <div class="admin-top-medal">🥈</div>
+              <div class="admin-top-rank">2ND PLACE</div>
+              <h3>Loading...</h3>
+              <strong>—</strong>
+            </article>
+
+            <article class="admin-top-card">
+              <div class="admin-top-medal">🥉</div>
+              <div class="admin-top-rank">3RD PLACE</div>
+              <h3>Loading...</h3>
+              <strong>—</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <div class="section-heading">
+          <div>
+            <h2>Settings</h2>
+            <p>Configure the basic details of your workspace.</p>
+          </div>
+        </div>
+
+        <form id="settings-form" class="card form-card">
+          <div class="form-section-title">
+            <span>⚙</span>
+            <div>
+              <h3>Workspace settings</h3>
+              <p>These details are stored locally in this demo.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="church-name">
+              Church or organization name
+            </label>
+            <input
+              id="church-name"
+              maxlength="100"
+              placeholder="Church name"
+            >
+          </div>
+
+          <div class="field">
+            <label for="admin-email">Contact email</label>
+            <input
+              id="admin-email"
+              type="email"
+              placeholder="admin@example.com"
+            >
+          </div>
+
+          <div class="field">
+            <label for="dashboard-language">Dashboard language</label>
+            <select id="dashboard-language">
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+            </select>
+          </div>
+
+          <div class="form-footer">
+            <span class="form-hint">
+              Authentication is not configured yet.
+            </span>
+
+            <button class="button gold-button" type="submit">
+              Save settings
+            </button>
+          </div>
+        </form>
+
+        <div class="security-note">
+          <b>Security setup required</b>
+          <p>
+            Before publishing, connect admin sign-in and server-side
+            role checks. A hidden page or client-side flag does not
+            protect private information.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="main-footer">
+      Church Quiz Admin <span>•</span> Learn, Play, Grow
+    </footer>
+  </main>
+
+  <!-- TOAST -->
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+  ></div>
+</body>
+</html>
