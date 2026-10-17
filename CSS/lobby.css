@@ -1,0 +1,199 @@
+:root {
+  --navy: #0B1E36;
+  --navy-dark: #071322;
+  --navy-card: #102640;
+  --gold: #E5B869;
+  --gold-bright: #FFD285;
+  --white: #FFFFFF;
+  --muted: #A9BCCD;
+  --border: rgba(229, 184, 105, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at 50% 20%, #153259 0%, var(--navy-dark) 85%);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.lobby-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 24px 36px;
+}
+
+/* شريط معلومات الانضمام والـ PIN */
+.lobby-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(16, 38, 64, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px 30px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  gap: 20px;
+}
+
+.join-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-label {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.info-url {
+  font-size: 16px;
+  color: var(--gold-bright);
+}
+
+.pin-display-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pin-label {
+  font-size: 14px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.pin-code {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px rgba(229, 184, 105, 0.4);
+}
+
+.qr-box {
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* شريط التحكم والأزرار */
+.lobby-action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+  padding: 0 10px;
+}
+
+.quiz-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+}
+
+.player-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.count-num {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #22c55e;
+}
+
+.count-label {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.start-btn {
+  padding: 14px 34px;
+  border-radius: 14px;
+  border: none;
+  background: #22c55e;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.35);
+  transition: transform 0.2s, opacity 0.2s, background 0.2s;
+}
+
+.start-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #16a34a;
+}
+
+.start-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ساحة تجمع اللاعبين */
+.players-arena {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(229, 184, 105, 0.2);
+  border-radius: 24px;
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-content: flex-start;
+  min-height: 380px;
+}
+
+.empty-arena-msg {
+  width: 100%;
+  text-align: center;
+  margin-top: 120px;
+  font-size: 1.3rem;
+  color: var(--muted);
+}
+
+/* بطاقة كل لاعب ينضم للوبي */
+.player-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(16, 38, 64, 0.9);
+  border: 1px solid var(--border);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--white);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.player-tag-avatar {
+  font-size: 1.6rem;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
