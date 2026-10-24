@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Church Quiz</title>
+  
+  <!-- مسارات الـ CSS والـ JS الموحدة (تأكد من مطابقة أسماء الملفات) -->
+  <link rel="stylesheet" href="loginn.css">
+  <script src="apin.js" defer></script>
+  <script src="loginn.js" defer></script>
+</head>
+<body>
+  <main class="login-page">
+    <!-- اللوجو الشمال -->
+    <img class="login-side-logo" src="church-logo.jpg" width="640" height="640" alt="" aria-hidden="true">
+
+    <div class="login-center">
+      <!-- الصليب الأصفر -->
+      <div class="login-cross" aria-hidden="true">
+        <svg viewBox="0 0 64 96" focusable="false">
+          <rect x="26" y="2" width="12" height="92" rx="5" fill="#FFD54A"/>
+          <rect x="6" y="26" width="52" height="12" rx="5" fill="#FFD54A"/>
+        </svg>
+      </div>
+
+    <section class="login-card">
+      <div class="logo">✦</div>
+      <p class="eyebrow">WELCOME BACK</p>
+      <h1>Kok_Quiz</h1>
+      <p class="subtitle">Sign in to continue your journey.</p>
+
+      <form id="loginForm">
+        <label for="email">Email address *</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
+
+        <label for="password">Password *</label>
+        <div class="password-wrapper">
+          <input
+            id="password"
+            name="password"
+            type="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+          <button
+            type="button"
+            id="togglePassword"
+            aria-label="Show password"
+          >◉</button>
+        </div>
+
+        <p id="loginMessage" class="message" role="status" aria-live="polite"></p>
+
+        <button class="login-button" type="submit">Sign In</button>
+      </form>
+
+      <p class="signup-text">
+        Don't have an account?
+        <!-- التوجيه لصفحة إنشاء الحساب بشكل صحيح -->
+        <a href="indexn.html">Create Account</a>
+      </p>
+    </section>
+    </div>
+
+    <!-- اللوجو اليمين -->
+    <img class="login-side-logo" src="church-logo.jpg" width="640" height="640" alt="" aria-hidden="true">
+  </main>
+</body>
+</html>

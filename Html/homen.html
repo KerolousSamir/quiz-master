@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B1E36">
+  <title>Kok Quiz</title>
+  <link rel="stylesheet" href="stylen.css">
+  <link rel="stylesheet" href="homen.css">
+</head>
+<body class="home-page">
+  <!-- فوق: زرار اللغة (كرة) + زرار الداشبورد (بيظهر بعد تسجيل الدخول) -->
+  <header class="topbar home-topbar">
+    <button class="globe-btn" id="language_btn" type="button" aria-label="العربية" title="العربية">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.5"/>
+        <ellipse cx="12" cy="12" rx="4" ry="9.5"/>
+        <path d="M2.5 12h19M4.2 7h15.6M4.2 17h15.6"/>
+      </svg>
+    </button>
+    <a class="home-top-btn dashboard-btn" id="dashboard_btn" href="adminn.html" hidden>Dashboard</a>
+  </header>
+
+  <main class="home-main">
+    <!-- المستطيل: اسم الموقع + صليب على اليمين -->
+    <section class="home-banner">
+      <h1 class="home-title">
+        <img class="home-wordmark" src="kokquiz-logo.webp" width="816" height="360" alt="Kok Quiz">
+      </h1>
+      <div class="home-banner-cross" aria-hidden="true">✝</div>
+    </section>
+
+    <!-- تحت المستطيل: صليب كبير + اللوجو مرتين -->
+    <section class="home-showcase">
+      <div class="home-logo-wrap">
+        <img class="home-church-logo" src="church-logo.jpg" width="640" height="640"
+             alt="اجتماع شباب جامعة وخريجين بكنيسة الشهيد العظيم مارجرجس بالسويس">
+        <div class="floating-star home-star-one" aria-hidden="true">✦</div>
+      </div>
+
+      <div class="home-big-cross" aria-hidden="true">
+        <svg viewBox="0 0 64 96" focusable="false">
+          <defs>
+            <linearGradient id="crossGold" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFE3A8"/>
+              <stop offset=".5" stop-color="#E5B869"/>
+              <stop offset="1" stop-color="#BD9147"/>
+            </linearGradient>
+          </defs>
+          <rect x="26" y="2" width="12" height="92" rx="5" fill="url(#crossGold)"/>
+          <rect x="6" y="26" width="52" height="12" rx="5" fill="url(#crossGold)"/>
+        </svg>
+      </div>
+
+      <div class="home-logo-wrap">
+        <img class="home-church-logo" src="church-logo.jpg" width="640" height="640" alt="" aria-hidden="true">
+        <div class="floating-star home-star-two" aria-hidden="true">✧</div>
+      </div>
+    </section>
+
+    <section class="home-join">
+      <div class="eyebrow" id="eyebrow">LEARN • PLAY • GROW</div>
+    </section>
+
+    <!-- Contact info: شخصين قصاد بعض (الأسماء والأرقام من contacts.js) -->
+    <section class="home-contact" aria-labelledby="contact_title">
+      <h2 class="home-contact-title" id="contact_title">Contact info</h2>
+      <div class="home-contact-grid" id="contact_grid"></div>
+    </section>
+  </main>
+
+  <script src="apin.js"></script>
+  <script src="contacts.js"></script>
+  <script src="homen.js"></script>
+</body>
+</html>
