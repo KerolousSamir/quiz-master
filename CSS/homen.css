@@ -1,0 +1,189 @@
+/* homen.css — الصفحة الرئيسية (Home). الألوان والخطوط من stylen.css (نفس صفحة indexn) */
+
+/* ---------- الخلفية: الكحلي الأصلي من stylen.css (اتشال الأبيض) ---------- */
+
+/* ---------- فوق: كرة اللغة + زرار الداشبورد ---------- */
+.home-topbar { justify-content: flex-end; gap: 12px; flex-wrap: wrap; }
+
+.globe-btn {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: #B0822C;
+  background: #F4F6F9;
+  border: 1px solid #D9E0E8;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: .2s ease;
+}
+.globe-btn:hover { background: rgba(229, 184, 105, .2); border-color: var(--gold); transform: rotate(-12deg); }
+
+/* زرار الداشبورد: بيظهر بس لو المستخدم مسجّل دخول */
+.dashboard-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 0 26px;
+  border-radius: 12px;
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: .2s ease;
+}
+.dashboard-btn:hover { background: var(--gold-bright); transform: translateY(-2px); }
+.dashboard-btn[hidden] { display: none; }
+
+/* ---------- المستطيل (نفس بانر الداشبورد) ---------- */
+.home-main { max-width: 1440px; margin: 0 auto; padding: 4px 6% 60px; }
+
+.home-banner {
+  direction: ltr;               /* الاسم شمال والصليب يمين في العربي والإنجليزي */
+  min-height: 220px;
+  background: linear-gradient(110deg, #102640, #1B3A58);
+  color: white;
+  border-radius: 15px;
+  padding: 32px 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 34px;
+}
+.home-title { margin: 0; line-height: 0; }
+.home-wordmark {
+  display: block;
+  width: min(400px, 58vw);
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(90, 170, 255, .35));
+}
+.home-banner-cross {
+  color: #FFD54A;
+  text-shadow: 0 0 30px rgba(255, 213, 74, .4);
+  font-size: 180px;
+  line-height: 1;
+  margin-right: 3%;
+  user-select: none;
+}
+
+/* ---------- تحت المستطيل: صليب كبير + اللوجو مرتين ---------- */
+.home-showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 6vw, 90px);
+  flex-wrap: wrap;
+  margin: 0 0 40px;
+}
+
+.home-logo-wrap { position: relative; display: grid; place-items: center; }
+.home-church-logo {
+  width: min(300px, 30vw);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  border: 2px solid rgba(229, 184, 105, .55);
+  box-shadow: 0 0 0 12px rgba(229, 184, 105, .2), 0 10px 50px rgba(229, 184, 105, .3);
+}
+.home-star-one { top: -4%;  right: -4%; font-size: 30px; }
+.home-star-two { bottom: -2%; left: -4%; font-size: 36px; }
+
+.home-big-cross { display: grid; place-items: center; }
+.home-big-cross svg {
+  height: clamp(200px, 26vw, 300px);
+  width: auto;
+  aspect-ratio: 64 / 96;
+  animation: home-glow 4s ease-in-out infinite;
+}
+@keyframes home-glow {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(255, 210, 133, .35)); }
+  50%      { filter: drop-shadow(0 0 30px rgba(255, 210, 133, .8)); }
+}
+
+/* ---------- الجملة + انضم للعبة ---------- */
+.home-join { max-width: 420px; margin: 0 auto; text-align: center; }
+.home-page .eyebrow { color: #B0822C; }
+.home-text {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 8px auto 4px;
+}
+
+/* ---------- Contact info ---------- */
+.home-contact { max-width: 820px; margin: 24px auto 0; text-align: center; }
+.home-contact-title {
+  margin: 0 0 22px;
+  font-size: 22px;
+  color: var(--white);
+}
+.home-contact-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  margin: 10px auto 0;
+  border-radius: 3px;
+  background: var(--gold);
+}
+.home-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #fff;
+  border: 1px solid #E2E8EF;
+  border-radius: 14px;
+  box-shadow: 0 6px 22px rgba(11, 30, 54, .07);
+  text-align: start;
+}
+.contact-info { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.contact-name { font-size: 16px; color: var(--navy); overflow-wrap: anywhere; }
+.contact-number { display: none; font-size: 14px; color: #5B6B7E; direction: ltr; unicode-bidi: plaintext; text-align: start; }
+.whatsapp-btn {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(37, 211, 102, .35);
+  transition: .2s ease;
+}
+.whatsapp-btn svg { width: 28px; height: 28px; }
+.whatsapp-btn:hover { background: #1EBE5A; transform: scale(1.08); }
+.whatsapp-btn[aria-disabled="true"] { background: #C5CED8; box-shadow: none; cursor: not-allowed; }
+.whatsapp-btn[aria-disabled="true"]:hover { transform: none; }
+
+/* ---------- موبايل ---------- */
+@media (max-width: 850px) {
+  .home-banner { padding: 24px 20px; min-height: 170px; }
+  .home-banner-cross { font-size: 110px; margin-right: 0; }
+  .home-big-cross { order: -1; flex: 0 0 100%; }
+  .home-church-logo { width: min(170px, 40vw); }
+  .home-showcase { gap: 24px; }
+}
+@media (max-width: 540px) {
+  .home-contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-big-cross svg { animation: none; }
+  .globe-btn:hover { transform: none; }
+}
